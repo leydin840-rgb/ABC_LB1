@@ -1,41 +1,37 @@
-# Prerequisites
-*.d
+#include <iostream>
+using namespace std;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int number, base;
+    cout << "Введите число: ";
+    cin >> number;
+    cout << "Введите систему счисления (2-16): ";
+    cin >> base;
 
-# Precompiled Headers
-*.gch
-*.pch
+    if (base < 2 || base > 16) {
+        cout << "Ошибка!" << endl;
+        return 0;
+    }
 
-# Linker files
-*.ilk
+    char digits[] = "0123456789ABCDEF";
+    char result[64];
+    int i = 0;
 
-# Debugger Files
-*.pdb
+    if (number == 0) {
+        cout << "0" << endl;
+        return 0;
+    }
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+    while (number > 0) {
+        result[i++] = digits[number % base];
+        number /= base;
+    }
 
-# Fortran module files
-*.mod
-*.smod
+    for (int a = i - 1; a >= 0; a--) {
+        cout << result[a];
+    }
+    cout << endl;
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# debug information files
-*.dwo
+    return 0;
+}
